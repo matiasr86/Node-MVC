@@ -1,6 +1,40 @@
-extends layout 
+extends layout
 
-block content 
-
-  main 
-    h1="Holas a todos" 
+block content
+  nav(class="navbar navbar-expand-lg navbar-dark bg-dark")
+    .container-fluid
+      a(class="navbar-brand" href="#") App Task
+      button(class="navbar-toggler" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" 
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" 
+        aria-label="Toggle navigation")
+        span(class="navbar-toggler-icon")
+      div(class="collapse navbar-collapse" id="navbarNavAltMarkup")
+        div(class="navbar-nav")
+          a(class="nav-link active" aria-current="page" href="#") Home
+          a(class="nav-link" href="#") Tareas
+          a(class="nav-link" href="#") Contacto
+  main(class="container")
+    h1(class="text-center")= title
+    div
+      a(class="btn btn-primary")(href="/add") Agregar Tarea
+    table.table
+      thead
+        tr
+          th(scope='col') #Id
+          th(scope='col') Task
+          th(scope='col') State
+          th(scope='col') Action
+      tbody
+        each task in tasks
+          tr
+            th(scope='row') #{task.id}
+            td #{task.title}
+            td 
+              if task.completed
+                a(class="btn btn-secondary")(href=`/uncomplete/${task.id}`) Desmarcar
+              else 
+                a(class="btn btn-success")(href=`/complete/${task.id}`) Completar
+            td 
+              a(class="btn btn-warning me-2")(href=`/edit/${task.id}`) Editar
+              a(class="btn btn-danger")(href=`/delete/${task.id}`) Eliminar

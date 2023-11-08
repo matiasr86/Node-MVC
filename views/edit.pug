@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+  main(class="container")
+    h2= title 
+    form(action=`/edit/${task.id}` method="POST" )
+      label(for="title") Nuevo titulo para la tarea
+      input(type="text", id="title", name="title", value=task.title, required , class="form-control")
+      button(class="btn btn-primary mt-2")(type="submit") Editar
+    a(class="btn btn-warning mt-5")(href="/") Volver

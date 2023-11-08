@@ -1,0 +1,10 @@
+extends layout 
+
+block content 
+  main(class="container")
+    h2= title 
+    form(action="/add" method="POST" )
+      label(for="title") Título de la Tarea
+      input(type="text", id="title", name="title", required, class="form-control")
+      button(class="btn btn-primary mt-2")(type="submit") Agregar
+    a(class="btn btn-warning mt-5")(href="/") Volver
